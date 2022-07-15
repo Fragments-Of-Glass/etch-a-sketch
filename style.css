@@ -1,17 +1,9 @@
+.button-container{
+    display: flex;
+    justify-content: center;
+}
+#container { 
+    width: 480px;
+    height: 480px;
+}
 
-#container {
-    height: 80%;
-    width: 80%;
-    display: grid;
-    
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
-}
-.grid-block{
-    
-    height: 50px;
-    width: 50px;
-}
-.grid-block:hover{
-    background-color: black;
-}
