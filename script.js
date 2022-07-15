@@ -5,6 +5,7 @@ container.style.gridTemplateRows = `repeat(16, 1fr)`;
 let cell = [];
 let color = [];
 var eraser = false;
+var coloring=true;
 makeGrid();
 function makeGrid() {
     for (let i = 0; i < (16 * 16); i++) {
@@ -19,7 +20,7 @@ function makeGrid() {
 
 }
 function changeColor(item) {
-
+    if (!coloring) return;
     item.style.background = 'black';
 }
 function reset(item) {
@@ -39,12 +40,14 @@ colorbtn.addEventListener('click', () => {
         color[i].addEventListener('click', () => changeColor(color[i]));
     }
     erase(0, 0);
+    coloring=true;
 })
 erasebtn.addEventListener('click', () => {
     eraser = true;
     for (let i = 0; i < (16 * 16); i++) {
         color[i].addEventListener('mouseover', () => erase(color[i], 1));
     }
+    coloring=false;
 })
 resetbtn.addEventListener('click', () => {
     for (let i = 0; i < (16 * 16); i++) {
