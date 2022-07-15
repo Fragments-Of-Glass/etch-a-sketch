@@ -1,9 +1,10 @@
-.button-container{
+.button-container {
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
-#container { 
+
+#container {
     width: 480px;
     height: 480px;
 }
-

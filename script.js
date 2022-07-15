@@ -4,7 +4,7 @@ container.style.gridTemplateColumns = `repeat(16, 1fr)`;
 container.style.gridTemplateRows = `repeat(16, 1fr)`;
 let cell = [];
 let color = [];
-
+var eraser = false;
 makeGrid();
 function makeGrid() {
     for (let i = 0; i < (16 * 16); i++) {
@@ -14,28 +14,36 @@ function makeGrid() {
     }
     for (let i = 0; i < (16 * 16); i++) {
 
-        color[i].addEventListener('mouseover', () => (changecolor(color[i])));
+        color[i].addEventListener('click', () => (changeColor(color[i])));
     }
 
 }
-function changecolor(item) {
+function changeColor(item) {
+
     item.style.background = 'black';
 }
 function reset(item) {
     item.style.background = 'white';
 }
 function erase(item) {
+    if (!eraser) return;
     item.style.background = 'white';
 }
-
-
-
 const btn = document.getElementById('info');
 const resetbtn = document.getElementById('reset');
 const erasebtn = document.getElementById('erase');
-erasebtn.addEventListener('click', () => {
+const colorbtn = document.getElementById('color');
+colorbtn.addEventListener('click', () => {
+    eraser = false;
     for (let i = 0; i < (16 * 16); i++) {
-        color[i].addEventListener('mouseover', () => reset(color[i]));
+        color[i].addEventListener('click', () => changeColor(color[i]));
+    }
+    erase(0, 0);
+})
+erasebtn.addEventListener('click', () => {
+    eraser = true;
+    for (let i = 0; i < (16 * 16); i++) {
+        color[i].addEventListener('mouseover', () => erase(color[i], 1));
     }
 })
 resetbtn.addEventListener('click', () => {
@@ -48,6 +56,13 @@ btn.addEventListener('click', () => {
     let size = parseInt(prompt('Enter new number of squares per side'));
     if (size > 100) alert('no');
     else {
-
+        makeNewGrid(size, size);
     }
 });
+function makeNewGrid(rows, cols) {
+    container.style.gridTemplateColumns = `repeat(rows, 1fr)`;
+    container.style.gridTemplateRows = `repeat(cols, 1fr)`;
+    cell = document.createElement("div");
+    container.appendChild(cell).className = 'grid-block';
+    color.push(cell);
+}
