@@ -2,10 +2,11 @@ let container = document.getElementById("container");
 container.style.display = 'grid';
 container.style.gridTemplateColumns = `repeat(16, 1fr)`;
 container.style.gridTemplateRows = `repeat(16, 1fr)`;
-let cell = [];
+let cell;
 let color = [];
 var eraser = false;
-var coloring=true;
+var coloring = true;
+let height;
 makeGrid();
 function makeGrid() {
     for (let i = 0; i < (16 * 16); i++) {
@@ -14,10 +15,8 @@ function makeGrid() {
         color.push(cell);
     }
     for (let i = 0; i < (16 * 16); i++) {
-
-        color[i].addEventListener('click', () => (changeColor(color[i])));
+        color[i].addEventListener('click', () => (changeColor(color[i])));  
     }
-
 }
 function changeColor(item) {
     if (!coloring) return;
@@ -40,14 +39,14 @@ colorbtn.addEventListener('click', () => {
         color[i].addEventListener('click', () => changeColor(color[i]));
     }
     erase(0, 0);
-    coloring=true;
+    coloring = true;
 })
 erasebtn.addEventListener('click', () => {
     eraser = true;
     for (let i = 0; i < (16 * 16); i++) {
         color[i].addEventListener('mouseover', () => erase(color[i], 1));
     }
-    coloring=false;
+    coloring = false;
 })
 resetbtn.addEventListener('click', () => {
     for (let i = 0; i < (16 * 16); i++) {
@@ -62,10 +61,3 @@ btn.addEventListener('click', () => {
         makeNewGrid(size, size);
     }
 });
-function makeNewGrid(rows, cols) {
-    container.style.gridTemplateColumns = `repeat(rows, 1fr)`;
-    container.style.gridTemplateRows = `repeat(cols, 1fr)`;
-    cell = document.createElement("div");
-    container.appendChild(cell).className = 'grid-block';
-    color.push(cell);
-}
