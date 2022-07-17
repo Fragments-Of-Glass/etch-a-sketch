@@ -2,14 +2,17 @@
     justify-content: center;
     display: flex;
     gap: 20px;
-    
+
 }
 #container {
-    width: 480px;
-    height: 480px;
-    margin:auto;
+    width: 512px;
+    height: 512px;
+    margin: auto;
     margin-top: 30px;
+    grid-auto-columns: minmax(15px, 512px);
+    grid-auto-rows: minmax(15px,512px);
 }
-.grid-block{
+
+.grid-block {
     border: 1px black dashed;
 }
