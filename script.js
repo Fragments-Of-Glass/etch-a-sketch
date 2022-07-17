@@ -90,7 +90,7 @@ resetbtn.addEventListener('click', () => {
 })
 btn.addEventListener('click', () => {
     let size = parseInt(prompt('Enter new number of squares per side'));
-    if (size > 100 || size < 1) alert('no');
+    if (size > 35 || size < 1||!parseInt(size)) alert('no');
     else {
         makeNewGrid(size);
     }
