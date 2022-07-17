@@ -24,6 +24,8 @@ function makeGrid() {
     }
 }
 function makeNewGrid(rows) {
+    eraser=false;
+    coloring = true;
     height = 512 / rows;
     container.style.gridTemplateColumns = `repeat(${rows}, 1fr)`;
     while (container.firstElementChild) {
@@ -73,7 +75,7 @@ colorbtn.addEventListener('click', () => {
     for (let i = 0; i < (16 * 16); i++) {
         color[i].addEventListener('click', () => changeColor(color[i]));
     }
-    erase(0, 0);
+    erase(0);
     coloring = true;
 })
 erasebtn.addEventListener('click', () => {
@@ -90,7 +92,7 @@ resetbtn.addEventListener('click', () => {
 })
 btn.addEventListener('click', () => {
     let size = parseInt(prompt('Enter new number of squares per side'));
-    if (size > 35 || size < 1||!parseInt(size)) alert('no');
+    if (size > 50 || size < 1||!parseInt(size)) alert('no');
     else {
         makeNewGrid(size);
     }
