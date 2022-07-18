@@ -10,6 +10,7 @@ const btn = document.getElementById('info');
 const resetbtn = document.getElementById('reset');
 const erasebtn = document.getElementById('erase');
 const colorbtn = document.getElementById('color');
+let colorInput=document.querySelector('#color');
 makeGrid();
 function makeGrid() {
     container.style.gridTemplateColumns = `repeat(16, 1fr)`;
@@ -61,7 +62,8 @@ function makeNewGrid(rows) {
 }
 function changeColor(item) {
     if (!coloring) return;
-    item.style.background = 'black';
+    let newColor=colorInput.value;
+    item.style.background = `${newColor}`;
 }
 function reset(item) {
     item.style.background = 'white';
@@ -70,7 +72,7 @@ function erase(item) {
     if (!eraser) return;
     item.style.background = 'white';
 }
-colorbtn.addEventListener('click', () => {
+colorbtn.addEventListener('input', () => {
     eraser = false;
     for (let i = 0; i < (16 * 16); i++) {
         color[i].addEventListener('click', () => changeColor(color[i]));
